@@ -1,3 +1,1 @@
 # Cocktail Haven
-
-git
