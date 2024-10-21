@@ -11,6 +11,7 @@ export default function Header() {
   const categories = useAppStore((state) => state.categories.drinks);
   const fetchCategories = useAppStore((state) => state.fetchCategories);
   const searchRecipes = useAppStore((state) => state.searchRecipes);
+  const showNotification = useAppStore((state) => state.showNotification);
 
   const { pathname } = useLocation();
   const isHome = useMemo(() => pathname === "/", [pathname]);
@@ -31,7 +32,10 @@ export default function Header() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (Object.values(searchFilters).includes("")) {
-      console.log("All Fields are required");
+      showNotification({
+        text: "All Fields are required",
+        error: true,
+      });
       return;
     }
 
